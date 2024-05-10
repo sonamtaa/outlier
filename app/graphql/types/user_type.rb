@@ -7,8 +7,8 @@ module Types
     implements GraphQL::Types::Relay::Node
     global_id_field :id
 
-    field :lastName, String, null: false
-    field :firstName, String, null: false
+    field :last_name, String, null: false
+    field :first_name, String, null: false
     field :email, String, null: false
     field :username, String, null: false
     field :authentication_token, String, null: false

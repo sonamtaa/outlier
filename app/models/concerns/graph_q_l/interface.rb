@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 # Note the path of this file must be graph_ql, not graphql
-module GraphQl
+module GraphQL
   module Interface
-    # extend ActiveSupport::Concern
-
     def self.included(base)
       base.send(:include, InstanceMethods)
       base.extend(ClassMethods)

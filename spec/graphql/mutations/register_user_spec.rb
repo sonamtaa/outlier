@@ -5,30 +5,30 @@ require 'rails_helper'
 RSpec.describe Mutations::RegisterUser do
   it 'register new user' do
     params = {
-      'first_name' => 'James',
-      'last_name' => 'Klein',
-      'email' => 'kleinjm007@gmail.com',
-      'username' => 'kelvien',
-      'password' => 'testing123'
+      first_name: 'James',
+      last_name: 'Klein',
+      email: 'kleinjm007@gmail.com',
+      username: 'kelvien',
+      password: 'testing123'
     }
 
     result = gql_query(query: mutation, variables: params)
              .to_h.deep_symbolize_keys.dig(:data, :registerUser)
-
     user = User.first
+
     expect(result.dig(:user, :id)).to eq(user.gql_id)
-    expect(result.dig(:user, :first_name)).to eq(variables['first_name'])
-    expect(result.dig(:user, :last_name)).to eq(variables['last_name'])
+    expect(result.dig(:user, :firstName)).to eq(variables['first_name'])
+    expect(result.dig(:user, :lastName)).to eq(variables['last_name'])
     expect(result.dig(:user, :email)).to eq(variables['email'])
     expect(result[:errors]).to be_blank
   end
 
   it 'raises error for RecordInvalid' do
     params = {
-      'firstName' => 'James',
-      'lastName' => 'Klein',
-      'email' => 'kleinjm007@gmail.com',
-      'password' => 'testing123'
+      first_name: 'James',
+      last_name: 'Klein',
+      email: 'kleinjm007@gmail.com',
+      password: 'testing123'
     }
 
     user = User.new
@@ -37,7 +37,6 @@ RSpec.describe Mutations::RegisterUser do
       .and_raise(ActiveRecord::RecordInvalid.new(user))
     result = gql_query(query: mutation, variables: params)
              .to_h.deep_symbolize_keys
-
     expect(result[:errors]).not_to be_blank
     expect(result.dig(:errors, 0, :message))
       .to include(user.errors.full_messages.first)
@@ -56,7 +55,7 @@ RSpec.describe Mutations::RegisterUser do
           firstName: $firstName,
           lastName: $lastName,
           email: $email,
-          username: $email,
+          username: $username,
           password: $password,
         }) {
           user {

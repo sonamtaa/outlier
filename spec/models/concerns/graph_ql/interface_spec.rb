@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe GraphQl::Interface do
+RSpec.describe GraphQL::Interface do
   class MockClass
-    include GraphQl::Interface
+    include GraphQL::Interface
 
     attr_reader :id
 
