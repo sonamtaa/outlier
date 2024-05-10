@@ -6,23 +6,22 @@ RSpec.describe OutlierSchema do
   describe '.resolve_type' do
     it 'resolves the given type dynamically' do
       [User].each do |klass|
-        expect(described_class.resolve_type(nil, klass.new, nil).name)
-          .to eq(klass.name)
+        expect(described_class.resolve_type(nil, klass.new, nil).name).to eq(klass.name)
       end
     end
 
     it 'raises an error for unknown type' do
-      expect { described_class.resolve_type(nil, RSpec, nil) }
-        .to raise_error(RuntimeError, 'Unexpected object: RSpec')
+      expect { described_class.resolve_type(nil, RSpec, nil) }.to raise_error(RuntimeError, 'Unexpected object: RSpec')
     end
   end
 
   describe '.id_from_object' do
     it 'returns the gql id for the given object' do
-      user = User.new(id: 123)
+      new_id = SecureRandom.uuid
+      user = User.new(id: new_id)
       id = described_class.id_from_object(user, User)
 
-      expect(Base64.decode64(id)).to eq('User-123')
+      expect(Base64.decode64(id)).to eq("User-#{new_id}")
     end
   end
 

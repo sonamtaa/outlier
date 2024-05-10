@@ -4,13 +4,13 @@ require 'rails_helper'
 
 RSpec.describe Mutations::SignIn do
   it 'signs in the user' do
-    variables = {
+    params = {
       'email' => 'kleinjm007@gmail.com',
       'password' => 'testing123'
     }
-    user = create(:user, **variables.symbolize_keys)
+    user = create(:user, **params.symbolize_keys)
 
-    result = gql_query(query: mutation, variables:)
+    result = gql_query(query: mutation, variables: params)
              .to_h.deep_symbolize_keys.dig(:data, :signIn)
 
     user.reload
@@ -22,14 +22,14 @@ RSpec.describe Mutations::SignIn do
   end
 
   it 'raises error for incorrect email/password' do
-    variables = {
+    params = {
       'email' => 'kleinjm007@gmail.com',
       'password' => 'testing123'
     }
-    user_variables = { email: variables['email'], password: 'wrongpass1' }
-    create(:user, **user_variables)
+    user_params = { email: params['email'], password: 'wrongpass1' }
+    create(:user, **user_params)
 
-    result = gql_query(query: mutation, variables:)
+    result = gql_query(query: mutation, variables: params)
              .to_h.deep_symbolize_keys
 
     expect(result.dig(:errors, 0, :message)).to eq('Incorrect Email/Password')
@@ -37,12 +37,12 @@ RSpec.describe Mutations::SignIn do
   end
 
   it 'raises error for missing user' do
-    variables = {
+    params = {
       'email' => 'kleinjm007@gmail.com',
       'password' => 'testing123'
     }
 
-    result = gql_query(query: mutation, variables:)
+    result = gql_query(query: mutation, variables: params)
              .to_h.deep_symbolize_keys
 
     expect(result.dig(:errors, 0, :message))
