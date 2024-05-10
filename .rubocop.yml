@@ -1,0 +1,85 @@
+require:
+  - rubocop-rspec
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+
+AllCops:
+  Exclude:
+    - '.git/**/*'
+    - 'bin/**/*'
+    - 'coverage/**/*'
+    - 'log/**/*'
+    - 'tmp/**/*'
+    - 'db/schema.rb'
+    - 'public/**/*'
+    - 'vendor/**/*'
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  TargetRubyVersion: 3.2.4
+  NewCops: enable
+  SuggestExtensions: false
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 20
+  Enabled: true
+RSpec/MultipleExpectations:
+  Enabled: false
+Metrics/AbcSize:
+  Max: 20
+Metrics/ClassLength:
+  Max: 100
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 10
+  AllowedMethods:
+    - context
+    - it
+    - describe
+    - let!
+    - initialize
+Metrics/BlockLength:
+  AllowedMethods: [ 'describe', 'context', 'class_methods', 'let!' ]
+Style/NumericLiterals:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/Alias:
+  Enabled: false
+Style/DoubleNegation:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/HashTransformValues:
+  Enabled: false
+Style/RegexpLiteral:
+  Enabled: false
+Style/BlockDelimiters:
+  Enabled: false
+Layout/LineLength:
+  Max: 130
+Lint/RescueException:
+  Enabled: false
+Style/MissingRespondToMissing:
+  Enabled: false
+Style/ExponentialNotation:
+  Enabled: false
+Lint/UnusedMethodArgument:
+  Enabled: false
+Style/SlicingWithRange:
+  Enabled: false
+Lint/StructNewOverride:
+  Enabled: false
+Lint/RaiseException:
+  Enabled: false
+Lint/Void:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Lint/AssignmentInCondition:
+  Enabled: false

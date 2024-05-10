@@ -1,0 +1,11 @@
+version: 2
+registries:
+  ruby-example:
+    type: rubygems-server
+updates:
+  - package-ecosystem: 'bundler'
+    directory: '/'
+    registries:
+      - ruby-example
+    schedule:
+      interval: 'monthly'
