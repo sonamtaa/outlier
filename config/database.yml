@@ -4,12 +4,12 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 development:
   <<: *default
-  database: rails_development
+  database: outlier_development
 test:
   <<: *default
-  database: rails_test
+  database: outlier_test
 production:
   <<: *default
-  database: rails_production
+  database: outlier_production
   username: rails
   password: <%= ENV["TENANT_BUNDLE_DATABASE_PASSWORD"] %>

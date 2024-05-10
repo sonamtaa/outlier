@@ -440,7 +440,7 @@ DEPENDENCIES
   pg
   puma
   rack-cors
-  rails (~> 7.1.3)
+  rails (~> 7.1.3.2)
   rails_best_practices
   rspec-rails
   rubocop
