@@ -7,6 +7,8 @@ ruby '3.2.4'
 
 gem 'bootsnap', require: false
 gem 'devise'
+gem 'devise-token_authenticatable'
+gem 'graphql'
 gem 'pg'
 gem 'puma'
 gem 'rack-cors'
@@ -21,6 +23,7 @@ group :development, :test do
   gem 'faker'
   gem 'guard-rspec', require: false
   gem 'letter_opener'
+  gem 'pry'
   gem 'rubocop', require: false
 end
 

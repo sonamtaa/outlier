@@ -27,18 +27,22 @@ RSpec/MultipleExpectations:
   Enabled: false
 Metrics/AbcSize:
   Max: 20
+  AllowedMethods:
+    - change
 Metrics/ClassLength:
   Max: 100
-
+Rails/DynamicFindBy:
+  Enabled: false
 Metrics/MethodLength:
   CountComments: false
-  Max: 10
+  Max: 13
   AllowedMethods:
     - context
     - it
     - describe
     - let!
     - initialize
+    - change
 Metrics/BlockLength:
   AllowedMethods: [ 'describe', 'context', 'class_methods', 'let!' ]
 Style/NumericLiterals:
@@ -82,4 +86,6 @@ Lint/Void:
 Style/GuardClause:
   Enabled: false
 Lint/AssignmentInCondition:
+  Enabled: false
+Rails/ThreeStateBooleanColumn:
   Enabled: false
