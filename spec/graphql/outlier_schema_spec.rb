@@ -6,7 +6,7 @@ RSpec.describe OutlierSchema do
   describe '.resolve_type' do
     it 'resolves the given type dynamically' do
       [User].each do |klass|
-        expect(described_class.resolve_type(nil, klass.new, nil).name).to eq(klass.name)
+        expect(described_class.resolve_type(nil, klass.new, nil).first.graphql_name).to eq(klass.name)
       end
     end
 
