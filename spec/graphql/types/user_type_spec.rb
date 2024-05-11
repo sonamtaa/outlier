@@ -5,24 +5,24 @@ require 'rails_helper'
 RSpec.describe Types::UserType do
   it 'returns the auth token if current user' do
     user = create(:user)
-    variables = { 'id' => user.gql_id }
+    params = { 'id' => user.gql_id }
 
     result = gql_query(
-      query:, variables:, context: { current_user: user }
+      query:,
+      variables: params,
+      context: { current_user: user }
     ).to_h.deep_symbolize_keys
 
     expect(result.dig(:data, :node, :id)).to eq(user.gql_id)
-    expect(result.dig(:data, :node, :authenticationToken))
-      .to eq(user.authentication_token)
+    expect(result.dig(:data, :node, :authenticationToken)).to eq(user.authentication_token)
     expect(result[:errors]).to be_blank
   end
 
   it 'does not return the authenticationToken for non current user' do
     user = create(:user)
-    variables = { 'id' => user.gql_id }
+    params = { 'id' => user.gql_id }
 
-    result = gql_query(query:, variables:)
-             .to_h.deep_symbolize_keys
+    result = gql_query(query:, variables: params).to_h.deep_symbolize_keys
 
     expect(result.dig(:data, :node)).to be_nil
     expect(result[:errors]).not_to be_blank
@@ -36,6 +36,8 @@ RSpec.describe Types::UserType do
             id
             firstName
             lastName
+            email
+            username
             authenticationToken
           }
         }
