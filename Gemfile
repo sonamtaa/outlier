@@ -3,10 +3,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.4'
+ruby '3.3.1'
 
 gem 'bootsnap', require: false
 gem 'devise'
+gem 'devise_invitable'
 gem 'devise-token_authenticatable'
 gem 'graphql'
 gem 'pg'

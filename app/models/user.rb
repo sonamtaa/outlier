@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   include GraphQL::Interface
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable,
+  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable,
          :token_authenticatable
 
   validates :first_name, :last_name, presence: true

@@ -14,7 +14,7 @@ module Mutations
 
     def resolve(args)
       user = User.create!(args)
-
+      user.invite!
       # current_user needs to be set so authenticationToken can be returned
       context[:current_user] = user
 
